@@ -9,22 +9,21 @@ const app = express();
 app.use(morgan('dev'))
 app.use(express.static(__dirname + "/views"));
 app.use(express.urlencoded({ extended: false }))
-app.use('/wiki',wiki)
-app.use('/user',user)
+app.use('/wiki', wiki)
+app.use('/user', user)
 
 
 app.get('/', (req, res, next) => {
-    res.send('hello world')
+    res.redirect('/wiki')
 });
 
 db.authenticate().then(() => {
     console.log('connected to the database');
 })
-const init = async() =>{
-    await db.sync({force:true})
+const init = async () => {
+    await db.sync({ force: true })
     await User.sync()
     await Page.sync()
-
 }
 
 init()

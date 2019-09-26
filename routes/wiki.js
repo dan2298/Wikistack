@@ -1,15 +1,14 @@
-const express = require ('express')
+const express = require('express')
 const router = express.Router()
 const addPage = require('../views/addPage')
-
-
+const mainPage = require('../views/main')
 
 router.get('/', (req, res, next) => {
-  res.send('got to get /wiki/')
+  res.send(mainPage())
 });
 
 router.post('/', (req, res, next) => {
-  res.send('got to post /wiki/')
+  res.json(req.body);
 });
 
 router.get('/add', (req, res, next) => {
