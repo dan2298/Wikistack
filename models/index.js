@@ -12,6 +12,9 @@ const Page = db.define('page',{
              allowNull:false},
     status: {type:Sequelize.ENUM('open','closed')}
 })
+Page.beforeValidate(PageInstance =>{
+PageInstance.slug = PageInstance.title.replace(/\s+/g, '_').replace(/\W/g, '')
+})
 
 const User = db.define('user',{
     name:{type:Sequelize.STRING,
